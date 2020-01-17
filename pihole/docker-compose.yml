@@ -7,7 +7,7 @@ services:
     image: pihole/pihole:latest
     networks:
       pihole-net:
-        ipv4_address: "${IP_ADDRESS}"
+        ipv4_address: ${IP_ADDRESS}
     environment:
       TZ: 'Europe/London'
       WEBPASSWORD: "${WEBPASSWORD}"
@@ -18,14 +18,14 @@ services:
       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
     dns:
       - 127.0.0.1
-      - "${UPSTREAM_DNS}"
+      - ${UPSTREAM_DNS}
     restart: unless-stopped
 
 networks:
   pihole-net:
     driver: macvlan
     driver_opts:
-      parent: "${NET_PARENT}"
+      parent: ${NET_PARENT}
     ipam:
       config:
-        - subnet: "${SUBNET}"
+        - subnet: ${SUBNET}
